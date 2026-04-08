@@ -4,7 +4,42 @@ This guide walks you through setting up Claude Code on your machine. No prior ex
 
 ---
 
-## Step 1: Install Ghostty (your terminal app)
+## Step 1: Get a Claude account
+
+Before anything else, you need a Claude account with a subscription that includes Claude Code.
+
+**Which plan do I need?**
+
+| Plan | Cost | Best for |
+|------|------|----------|
+| Claude Pro | $20/month | Getting started, lighter usage |
+| Claude Max | $100/month | Regular daily use (recommended) |
+| Claude Max (high usage) | $200/month | Heavy all-day usage |
+
+Claude Pro works fine to start. If you find yourself hitting usage limits regularly, upgrade to Max. Your team lead may have already set up a team account for you. Check with them first before subscribing individually.
+
+**How to sign up:**
+
+1. Go to https://claude.ai
+2. Click "Sign up" and create an account (use your work email)
+3. Once logged in, go to https://claude.ai/settings/billing to choose your plan
+4. Select Claude Pro ($20/month) or Claude Max ($100/month)
+
+You'll need this account in the next steps when you connect Claude Code to your account.
+
+> **Troubleshooting Step 1:**
+>
+> **"My team lead said they'd set up an account for me."** Ask them for the invite link. You'll get an email to join the team workspace. Follow the link and create your account that way instead.
+>
+> **"I already have a Claude account."** Great. Make sure you're on at least the Pro plan. Go to https://claude.ai/settings/billing to check.
+>
+> **"I don't want to use my personal email."** Use your work email. If your company uses Google Workspace or Microsoft 365, you can sign up with that.
+>
+> **"Which plan should I choose?"** Start with Pro ($20/month). You can always upgrade later if you need more usage. If you're going to use Claude Code for several hours a day, go straight to Max ($100/month).
+
+---
+
+## Step 2: Install Ghostty (your terminal app)
 
 A terminal is the app where you'll talk to Claude. We use Ghostty because it works better with Claude than the default terminal on your Mac.
 
@@ -26,7 +61,7 @@ Once installed, open Ghostty. It looks like a terminal with a black background. 
 
 **You need macOS 13 or newer.** To check: click the Apple menu at the top left of your screen, then "About This Mac". If your version number starts with 13 or higher, you're fine.
 
-> **Troubleshooting Step 1:**
+> **Troubleshooting Step 2:**
 >
 > **"How do I open Spotlight?"** Press `Cmd + Space` on your keyboard. A search bar appears. Type "Terminal" and press Enter.
 >
@@ -38,7 +73,7 @@ Once installed, open Ghostty. It looks like a terminal with a black background. 
 
 ---
 
-## Step 2: Install Claude Code
+## Step 3: Install Claude Code
 
 In Ghostty, paste this command and press Enter:
 
@@ -56,7 +91,7 @@ claude
 
 A browser window will open asking you to log in. Sign in with your Claude account. Once you see a confirmation message, go back to Ghostty. You're connected.
 
-> **Troubleshooting Step 2:**
+> **Troubleshooting Step 3:**
 >
 > **"command not found: curl"** This is very rare on Mac. Try updating your macOS (System Settings, General, Software Update) and try again.
 >
@@ -70,7 +105,7 @@ A browser window will open asking you to log in. Sign in with your Claude accoun
 
 ---
 
-## Step 3: Configure permissions
+## Step 4: Configure permissions
 
 Claude needs permission to run tools on your machine (editing files, searching the web, running commands). We'll set it up so it doesn't ask you for permission every single time.
 
@@ -89,7 +124,7 @@ EOF
 
 That's it. No output means it worked.
 
-> **Troubleshooting Step 3:**
+> **Troubleshooting Step 4:**
 >
 > **Nothing happened.** That's correct. This command doesn't show any output when it works. You're good.
 >
@@ -108,7 +143,7 @@ That's it. No output means it worked.
 
 ---
 
-## Step 4: Configure Ghostty (optional but recommended)
+## Step 5: Configure Ghostty (optional but recommended)
 
 This makes Ghostty nicer to use. Paste this into Ghostty and press Enter:
 
@@ -130,7 +165,7 @@ Close and reopen Ghostty to see the changes.
 - Lets you press `Cmd + D` to split the screen (useful for having Claude in one side and something else in the other)
 - Enables notifications so you know when Claude has finished a task
 
-> **Troubleshooting Step 4:**
+> **Troubleshooting Step 5:**
 >
 > **The font looks the same after reopening.** Make sure you fully closed Ghostty (Cmd + Q), not just closed the window. Then reopen it.
 >
@@ -140,7 +175,7 @@ Close and reopen Ghostty to see the changes.
 
 ---
 
-## Step 5: Set up your Claude folder
+## Step 6: Set up your Claude folder
 
 All your work with Claude should live in one place: a folder called **Claude** inside your Documents folder. Every project gets its own subfolder inside it.
 
@@ -190,7 +225,7 @@ This is what your Claude folder should look like over time:
 - Never run Claude from your home folder or desktop. Always be inside a project folder
 - The `.env` file holds secrets (API keys, passwords). Never share it, never commit it to git
 
-> **Troubleshooting Step 5:**
+> **Troubleshooting Step 6:**
 >
 > **"command not found: git"** You need to install git. Paste this into Ghostty: `xcode-select --install` and follow the prompts. It takes a few minutes. Then try again.
 >
@@ -204,7 +239,7 @@ This is what your Claude folder should look like over time:
 
 ---
 
-## Step 6: Start using Claude
+## Step 7: Start using Claude
 
 Go to your project folder and start Claude:
 
@@ -241,7 +276,7 @@ Example: *"The plan looks good. Let's build it, starting with step 1."*
 
 **Start with all three steps.** As you get more comfortable, you'll find your own rhythm. Small fixes might not need brainstorming. That's fine. But learn the full workflow first, then adjust.
 
-> **Troubleshooting Step 5:**
+> **Troubleshooting Step 7:**
 >
 > **"I don't know what my project folder is."** Ask your team lead. If you're starting a new project from scratch, create a folder first: `mkdir ~/Documents/my-project` then `cd ~/Documents/my-project`.
 >
@@ -253,36 +288,60 @@ Example: *"The plan looks good. Let's build it, starting with step 1."*
 
 ---
 
-## Step 6: Teach Claude how your team works (CLAUDE.md)
+## Step 8: Teach Claude how you work (CLAUDE.md)
 
-You can give Claude a set of rules for your project. Things like what tech stack you use, how you want code written, what to avoid. Claude reads these rules at the start of every session.
+Claude can learn your preferences, your tech stack, how you like things done, and what to avoid. It reads a file called `CLAUDE.md` at the start of every session. You don't need to write this file yourself. Claude will create it for you by asking you a series of questions.
 
-**How to set this up:**
+**How to do it:**
 
-1. In this repo, find the file called `CLAUDE.md.project-template`
-2. Copy it into your project folder and rename it to `CLAUDE.md`
-3. Open it in any text editor and fill in each section
+1. Make sure you're in your project folder in Ghostty
+2. Start Claude by typing `claude` and pressing Enter
+3. Paste the message below and press Enter
 
-The comments inside the file explain what to put in each section. Delete the comments as you fill them in.
+```
+I need to set up a CLAUDE.md file for this project. I'd like you to interview me
+to understand how I work and what rules you should follow. Ask me one question at
+a time. Cover these topics:
 
-**Want to see a completed example?** Look at `CLAUDE.md.example` in this repo. Don't copy it directly. Use it as inspiration and write rules that match how your team actually works.
+- What I'm building and why
+- What tech stack we use (or if I'm not sure, help me figure it out)
+- How I'd like you to communicate with me (short answers? detailed explanations?)
+- What coding standards matter to me (even if I'm not technical, things like
+  "make it look clean" or "keep it simple" count)
+- Any design preferences (colours, fonts, layout)
+- Security rules (what should you never do?)
+- Anything that's gone wrong before that you should avoid
 
-**Tips:**
-- Be specific. "Write good code" is useless. "Sort all dropdowns alphabetically" is a real rule Claude can follow
-- Add rules when Claude does something you don't like. Over time your file gets better
-- Keep it under 200 lines. Claude reads this every session and long files dilute the important stuff
+When you've asked enough questions, create a CLAUDE.md file in this project folder
+with everything we discussed. Keep it under 200 lines. Use clear, specific rules
+rather than vague guidelines.
 
-> **Troubleshooting Step 6:**
+Start with the first question.
+```
+
+4. Answer each question Claude asks. There are no wrong answers. If you don't know something, just say so and Claude will skip it or help you figure it out
+5. When Claude has enough information, it will create the `CLAUDE.md` file automatically
+6. Read through what it created. If anything looks wrong, just tell Claude to change it
+
+**That's it.** From now on, every time you start Claude in this project folder, it will read that file and follow your rules.
+
+**Over time, keep improving it.** When Claude does something you don't like, tell it to add a rule to the CLAUDE.md so it doesn't happen again. The file gets better the more you use it.
+
+**Want to see what a finished CLAUDE.md looks like?** Check out `CLAUDE.md.example` in this repo. Don't copy it. It's just there so you can see the kind of thing Claude will create for you.
+
+> **Troubleshooting Step 8:**
 >
-> **"I don't know what to put in the CLAUDE.md."** Start with just one or two rules. You don't need to fill in every section on day one. Add more rules as you learn what works and what doesn't.
+> **Claude created the file but it doesn't seem to be working.** Make sure the file is named exactly `CLAUDE.md` (capital letters matter) and is in the root of your project folder, not inside a subfolder. You can check by typing `ls CLAUDE.md` in Ghostty while in your project folder. If it shows the file, it's in the right place.
 >
-> **"I'm not sure Claude is reading my CLAUDE.md."** Make sure the file is named exactly `CLAUDE.md` (capital letters matter) and is in the root of your project folder, not inside a subfolder. When you start a Claude session, it will mention reading the file.
+> **I want to change something in the CLAUDE.md later.** Just start a Claude session and say "Update the CLAUDE.md to add this rule: [your rule]". Claude will edit the file for you.
 >
-> **"How do I open a .md file?"** It's just a text file. Right-click it, choose "Open With", and pick any text editor (TextEdit, VS Code, or even Notes). Or ask Claude to help you edit it inside a session.
+> **Claude asked a question I don't understand.** Just say "I'm not sure what you mean" or "skip this one". Claude will either rephrase or move on.
+>
+> **I'm not technical and don't know what tech stack means.** That's fine. When Claude asks, just describe what you're building in plain English. "A website", "a dashboard", "a mobile app". Claude will figure out the technical details or ask follow-up questions.
 
 ---
 
-## Step 7: Add your team's context (optional)
+## Step 9: Add your team's context (optional)
 
 If your team wants to share notes, conventions, or project background with other teams using this repo, there's a `teams/` folder for that.
 
@@ -292,11 +351,11 @@ If your team wants to share notes, conventions, or project background with other
 
 **Important: do not put sensitive information here.** This repo is public. Anything confidential (financials, investor names, deal details) should go in your private project repo, not here.
 
-> **Troubleshooting Step 7:**
+> **Troubleshooting Step 9:**
 >
 > **"I don't know how to copy a folder in GitHub."** You can do it from the terminal. Navigate to this repo's folder and type: `cp -r teams/_template teams/your-team-name` (replace "your-team-name" with your actual team name, no spaces).
 >
-> **"I don't use GitHub."** That's OK. You can skip this step entirely. The important file is the CLAUDE.md in your own project folder (Step 6). This step is just for sharing context across teams.
+> **"I don't use GitHub."** That's OK. You can skip this step entirely. The important file is the CLAUDE.md in your own project folder (Step 8). This step is just for sharing context across teams.
 
 ---
 
