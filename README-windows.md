@@ -501,6 +501,8 @@ Replace "your-team-name" with your actual team name, no spaces.
 
 > **Troubleshooting Step 10:**
 >
+> **"I don't know how to copy a folder."** You can do it from Windows Terminal. Navigate to this repo's folder and type: `Copy-Item -Recurse teams\_template teams\your-team-name` (replace "your-team-name" with your actual team name, no spaces).
+>
 > **"I don't use GitHub."** That's OK. You can skip this step entirely. The important file is the CLAUDE.md in your own project folder (Step 8). This step is just for sharing context across teams.
 
 ---
