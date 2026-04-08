@@ -267,3 +267,119 @@ C:\Users\YourName\Documents\Claude\
 > **"What does `cd` mean?"** It stands for "change directory". It's how you move between folders in the terminal. Think of it like double-clicking a folder on your desktop, but in text form.
 >
 > **"I already have the project somewhere else on my machine."** Move it into your Claude folder. In Windows Terminal, paste: `Move-Item "$HOME\Desktop\project-name" "$HOME\Documents\Claude\"` (adjust the path if it's somewhere other than your Desktop).
+
+---
+
+## Step 7: Start using Claude
+
+Go to your project folder and start Claude:
+
+```
+cd "$HOME\Documents\Claude\your-project"
+claude
+```
+
+**But before you ask Claude to build anything, read this section. It will save you a lot of time.**
+
+### The three modes: brainstorm, plan, build
+
+Claude works best when you work through problems in stages rather than jumping straight to "build me X".
+
+**1. Brainstorm first**
+
+Tell Claude what you're trying to achieve and why. Discuss options. Explore the problem. Don't ask for any code yet.
+
+Example: *"I need a dashboard that shows our team's weekly metrics. The audience is our investors. Let's brainstorm how to approach this."*
+
+**2. Then plan**
+
+Once you've agreed on an approach, ask Claude to write a plan. Review it. Ask questions. Poke holes in it.
+
+Example: *"That approach sounds good. Write a plan for how we'd build this step by step."*
+
+**3. Then build**
+
+Now ask Claude to execute the plan. It writes the code, you review what it produces.
+
+Example: *"The plan looks good. Let's build it, starting with step 1."*
+
+**If something changes along the way**, don't just push through. Say *"Let's step back and rethink this part."* Going back to brainstorming is not a waste of time. It prevents wasted effort.
+
+**Start with all three steps.** As you get more comfortable, you'll find your own rhythm. Small fixes might not need brainstorming. That's fine. But learn the full workflow first, then adjust.
+
+> **Troubleshooting Step 7:**
+>
+> **"I don't know what my project folder is."** Ask your team lead. If you're starting a new project from scratch, create a folder first: `mkdir "$HOME\Documents\Claude\my-project"` then `cd "$HOME\Documents\Claude\my-project"`.
+>
+> **Claude seems confused or isn't doing what I want.** Be more specific. Instead of "make it better", say exactly what you want changed and why. The more context you give, the better the result.
+>
+> **Claude is doing something wrong and won't stop.** Press `Ctrl + C` to interrupt it. Then explain what went wrong and what you'd like instead.
+>
+> **I accidentally closed Windows Terminal mid-session.** Just reopen Windows Terminal, navigate to your project folder, and type `claude` again. Your files are safe. The conversation history is lost, but that's fine. Just tell Claude what you're working on.
+
+---
+
+## Step 8: Teach Claude how you work (CLAUDE.md)
+
+Claude can learn your preferences, your tech stack, how you like things done, and what to avoid. It reads a file called `CLAUDE.md` at the start of every session. You don't need to write this file yourself. Claude will create it for you by asking you a series of questions.
+
+**How to do it:**
+
+1. Make sure you're in your project folder in Windows Terminal
+2. Start Claude by typing `claude` and pressing Enter
+3. Paste the message below and press Enter
+
+```
+I need to set up a CLAUDE.md file for this project. I'd like you to interview me
+to understand how I work and what rules you should follow. Ask me one question at
+a time. Cover these topics:
+
+- What I'm building and why
+- What kind of work I'll ask you to do (building apps, writing documents,
+  creating presentations, research, analysis, or a mix of these)
+- What tech stack we use (or if I'm not sure, help me figure it out)
+- For documents and written content: what format do I want? (HTML pages,
+  markdown files, PDFs, slide decks) What tone and style? (formal, casual,
+  technical, plain English) Any branding or formatting rules?
+- How I'd like you to communicate with me (short answers? detailed explanations?
+  do I want you to ask clarifying questions or just go ahead?)
+- How I'd like you to handle saving work (should you commit to git regularly?
+  ask before committing? save progress at the end of each session?)
+- What coding standards matter to me (even if I'm not technical, things like
+  "make it look clean" or "keep it simple" count)
+- Any design preferences (colours, fonts, layout)
+- Security rules (what should you never do?)
+- Anything that's gone wrong before that you should avoid
+- How I'd like to update these rules over time (should you suggest new rules
+  when you notice patterns? should you ask me before changing anything?)
+
+When you've asked enough questions, create a CLAUDE.md file in this project folder
+with everything we discussed. Keep it under 200 lines. Use clear, specific rules
+rather than vague guidelines.
+
+Also include a section at the end of the CLAUDE.md called "How to update this file"
+that reminds me I can say things like "add a rule to CLAUDE.md that says..." or
+"update the CLAUDE.md to change..." at any time during a session.
+
+Start with the first question.
+```
+
+4. Answer each question Claude asks. There are no wrong answers. If you don't know something, just say so and Claude will skip it or help you figure it out
+5. When Claude has enough information, it will create the `CLAUDE.md` file automatically
+6. Read through what it created. If anything looks wrong, just tell Claude to change it
+
+**That's it.** From now on, every time you start Claude in this project folder, it will read that file and follow your rules.
+
+**Over time, keep improving it.** When Claude does something you don't like, tell it to add a rule to the CLAUDE.md so it doesn't happen again. The file gets better the more you use it.
+
+**Want to see what a finished CLAUDE.md looks like?** Check out `CLAUDE.md.example` in this repo. Don't copy it. It's just there so you can see the kind of thing Claude will create for you.
+
+> **Troubleshooting Step 8:**
+>
+> **Claude created the file but it doesn't seem to be working.** Make sure the file is named exactly `CLAUDE.md` (capital letters matter) and is in the root of your project folder, not inside a subfolder. You can check by typing `dir CLAUDE.md` in Windows Terminal while in your project folder. If it shows the file, it's in the right place.
+>
+> **I want to change something in the CLAUDE.md later.** Just start a Claude session and say "Update the CLAUDE.md to add this rule: [your rule]". Claude will edit the file for you.
+>
+> **Claude asked a question I don't understand.** Just say "I'm not sure what you mean" or "skip this one". Claude will either rephrase or move on.
+>
+> **I'm not technical and don't know what tech stack means.** That's fine. When Claude asks, just describe what you're building in plain English. "A website", "a dashboard", "a mobile app". Claude will figure out the technical details or ask follow-up questions.
