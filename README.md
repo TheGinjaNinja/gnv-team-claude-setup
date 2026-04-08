@@ -1,155 +1,190 @@
-# Team Claude Code Setup
+# Getting Started with Claude Code
 
-Get your development environment configured for working with Claude Code.
+This guide walks you through setting up Claude Code on your machine. No prior experience with terminals or coding tools is needed. Follow each step in order.
 
-## 1. Install Ghostty (terminal)
+---
 
-Ghostty is the recommended terminal. It has native support for Shift+Enter (multiline input), desktop notifications when Claude finishes, and built-in shell integration. All of these make a real difference when working with Claude Code.
+## Step 1: Install Ghostty (your terminal app)
 
-**macOS (Homebrew):**
-```bash
+A terminal is the app where you'll talk to Claude. We use Ghostty because it works better with Claude than the default terminal on your Mac.
+
+**Option A: If you have Homebrew installed**
+
+Open your current Terminal app (search "Terminal" in Spotlight) and paste this:
+
+```
 brew install --cask ghostty
 ```
 
-Or download directly from https://ghostty.org (requires macOS 13+).
+**Option B: If you don't have Homebrew (or aren't sure)**
 
-**Configure Ghostty:**
+1. Go to https://ghostty.org
+2. Download the Mac app
+3. Open the downloaded file and drag Ghostty to your Applications folder
 
-Create `~/.config/ghostty/config`:
+Once installed, open Ghostty. It looks like a terminal with a black background. This is where you'll run all the commands below.
+
+**You need macOS 13 or newer.** To check: click the Apple menu at the top left of your screen, then "About This Mac". If your version number starts with 13 or higher, you're fine.
+
+---
+
+## Step 2: Install Claude Code
+
+In Ghostty, paste this command and press Enter:
 
 ```
-# Font
-font-family = "JetBrains Mono"
-font-size = 14
-
-# Shell integration (enables notifications, exit status)
-shell-integration = true
-
-# Splits for multitasking
-keybind = cmd+d=new_split:right
-keybind = cmd+shift+d=new_split:down
-
-# Quick config reload
-keybind = cmd+shift+comma=reload_config
-```
-
-Pick a theme that works for you. Press `Cmd + ,` to open config in your editor, `Cmd + Shift + ,` to reload.
-
-## 2. Install Claude Code
-
-```bash
-# macOS / Linux / WSL
 curl -fsSL https://claude.ai/install.sh | bash
-
-# Windows PowerShell
-irm https://claude.ai/install.ps1 | iex
 ```
 
-Run `claude` once to authenticate via browser.
+When it finishes, close Ghostty and reopen it (so it picks up the new installation).
 
-## 3. Configure permissions
+Then type this and press Enter:
 
-Create or edit `~/.claude/settings.json`:
+```
+claude
+```
 
-```json
+A browser window will open asking you to log in. Sign in with your Claude account. Once you see a confirmation message, go back to Ghostty. You're connected.
+
+---
+
+## Step 3: Configure permissions
+
+Claude needs permission to run tools on your machine (editing files, searching the web, running commands). We'll set it up so it doesn't ask you for permission every single time.
+
+Paste this entire block into Ghostty and press Enter:
+
+```
+mkdir -p ~/.claude && cat > ~/.claude/settings.json << 'EOF'
 {
   "skipDangerousModePermissionPrompt": true,
   "permissions": {
     "defaultMode": "bypassPermissions"
   }
 }
+EOF
 ```
 
-This lets Claude run all tools (bash, file edits, git, web search) without prompting for each one. Only use this on machines where you're comfortable with that level of access.
+That's it. No output means it worked.
 
-## 4. How to work with Claude: brainstorm, plan, build
+---
 
-Claude Code works best when you follow a deliberate workflow. Don't just jump straight to "build me X". The quality of what you get out depends on how you work with it.
+## Step 4: Configure Ghostty (optional but recommended)
 
-**The three modes:**
-
-1. **Brainstorm** - Explore the problem space. Tell Claude what you're trying to achieve and why. Discuss options, trade-offs, and approaches. Don't write any code yet. This is where you align on what to build.
-
-2. **Plan** - Once you've agreed on an approach, ask Claude to write a plan. This is a step-by-step implementation outline. Review it, poke holes in it, refine it. The plan becomes your shared roadmap.
-
-3. **Build** - Now execute the plan. Claude writes the code, you review. If something comes up that changes the approach, go back to brainstorming or update the plan. Don't just push through a plan that no longer fits.
-
-**In practice:**
-- Start a new feature with "Let's brainstorm how to approach X"
-- When aligned, say "Write a plan for this"
-- When the plan looks good, say "Let's build it" or "Execute step 1"
-- If something unexpected comes up, say "Let's step back and rethink this part"
-
-**This is the default.** We recommend everyone starts this way. As you get more comfortable with Claude, you'll develop your own rhythm. Some people skip brainstorming for small tasks. Some go straight to building for bug fixes. That's fine. But start with the full workflow and adjust from experience, not assumption.
-
-## 5. Set up your project CLAUDE.md
-
-This is the important bit. A `CLAUDE.md` file in your project root tells Claude how to work with you. It covers your tech stack, coding standards, communication style, security rules, and anything else that matters to your team.
-
-**Start here:**
-1. Copy `CLAUDE.md.project-template` into your project root as `CLAUDE.md`
-2. Fill in each section with rules that match how your team actually works
-3. Commit it to the repo so everyone on the team gets it automatically
-
-**Need inspiration?** Look at `CLAUDE.md.example` for a filled-in version. Don't copy it wholesale. The value comes from writing rules that reflect your own preferences and standards.
-
-**Tips for writing a good CLAUDE.md:**
-- Be specific. "Write clean code" means nothing. "Sort all dropdowns alphabetically" is a real rule
-- Include things that have gone wrong before. If Claude kept doing something annoying, add a rule against it
-- Update it as you go. Your first version won't be perfect. Refine it over weeks as you learn what works
-- Keep it under 200 lines. Claude reads this every session. Long files dilute the important stuff
-
-## 6. Adding project context for your team
-
-If your team needs shared context that Claude should know about (product background, key decisions, domain terminology), put it in your project's `CLAUDE.md` or in a `docs/` folder that Claude can read.
-
-**Do not put sensitive information in this setup repo.** Investor names, financial figures, deal status, and similar details belong in the project repo itself (private), not here. This repo is for setup guidance and templates.
-
-Each team should own their own project context. The `teams/` folder in this repo has a template for adding team-specific notes that aren't sensitive:
+This makes Ghostty nicer to use. Paste this into Ghostty and press Enter:
 
 ```
-teams/
-  your-team-name/
-    README.md                  <- team-specific setup notes, tools, conventions
-    CLAUDE.md.template         <- customised CLAUDE.md template for your projects
+mkdir -p ~/.config/ghostty && cat > ~/.config/ghostty/config << 'EOF'
+font-family = "JetBrains Mono"
+font-size = 14
+shell-integration = true
+keybind = cmd+d=new_split:right
+keybind = cmd+shift+d=new_split:down
+keybind = cmd+shift+comma=reload_config
+EOF
 ```
 
-To add your team: copy `teams/_template/` to `teams/your-team-name/` and fill it in.
+Close and reopen Ghostty to see the changes.
 
-## 7. Optional: personal global config
+**What this does:**
+- Sets a clean, readable font
+- Lets you press `Cmd + D` to split the screen (useful for having Claude in one side and something else in the other)
+- Enables notifications so you know when Claude has finished a task
 
-You can also create `~/.claude/CLAUDE.md` for preferences that apply across all your projects (not just ones with a project-level file). Good candidates: communication style, general coding habits, tools you always use.
+---
 
-## 8. Useful commands inside Claude Code
+## Step 5: Start using Claude
 
-| Command | What it does |
-|---------|-------------|
-| `/help` | Show available commands |
-| `/tools` | List available tools |
-| `/permissions` | Check active permission rules |
-| `/mcp` | Show connected MCP servers |
-| `claude doctor` | Diagnose setup issues |
+Open Ghostty, navigate to your project folder, and type `claude` to start a session.
 
-## File and folder structure
+**But before you ask Claude to build anything, read this section. It will save you a lot of time.**
 
-Here's how all the config files fit together:
+### The three modes: brainstorm, plan, build
 
-```
-~/.config/ghostty/
-  config                       <- Ghostty terminal settings
+Claude works best when you work through problems in stages rather than jumping straight to "build me X".
 
-~/.claude/
-  settings.json                <- Claude Code permissions and preferences
-  CLAUDE.md                    <- your personal global instructions (optional)
+**1. Brainstorm first**
 
-~/your-project/
-  CLAUDE.md                    <- shared project standards (committed to git)
-  src/
-    CLAUDE.md                  <- subdirectory overrides (optional, rare)
-  .env                         <- NEVER commit this
-  .gitignore                   <- must include .env
-```
+Tell Claude what you're trying to achieve and why. Discuss options. Explore the problem. Don't ask for any code yet.
 
-**How CLAUDE.md files merge:** Claude Code reads all levels and combines them. Project-level files are the main way to share team standards. Personal global files are for individual preferences that shouldn't be in git. Subdirectory files are rarely needed but useful if a subfolder has different rules (e.g. a `docs/` folder with different formatting standards).
+Example: *"I need a dashboard that shows our team's weekly metrics. The audience is our investors. Let's brainstorm how to approach this."*
 
-**Key principle:** anything team-shared goes in the project repo. Anything personal goes in `~/.claude/`. Don't put personal preferences in project files, and don't put project standards only in your personal config.
+**2. Then plan**
+
+Once you've agreed on an approach, ask Claude to write a plan. Review it. Ask questions. Poke holes in it.
+
+Example: *"That approach sounds good. Write a plan for how we'd build this step by step."*
+
+**3. Then build**
+
+Now ask Claude to execute the plan. It writes the code, you review what it produces.
+
+Example: *"The plan looks good. Let's build it, starting with step 1."*
+
+**If something changes along the way**, don't just push through. Say *"Let's step back and rethink this part."* Going back to brainstorming is not a waste of time. It prevents wasted effort.
+
+**Start with all three steps.** As you get more comfortable, you'll find your own rhythm. Small fixes might not need brainstorming. That's fine. But learn the full workflow first, then adjust.
+
+---
+
+## Step 6: Teach Claude how your team works (CLAUDE.md)
+
+You can give Claude a set of rules for your project. Things like what tech stack you use, how you want code written, what to avoid. Claude reads these rules at the start of every session.
+
+**How to set this up:**
+
+1. In this repo, find the file called `CLAUDE.md.project-template`
+2. Copy it into your project folder and rename it to `CLAUDE.md`
+3. Open it in any text editor and fill in each section
+
+The comments inside the file explain what to put in each section. Delete the comments as you fill them in.
+
+**Want to see a completed example?** Look at `CLAUDE.md.example` in this repo. Don't copy it directly. Use it as inspiration and write rules that match how your team actually works.
+
+**Tips:**
+- Be specific. "Write good code" is useless. "Sort all dropdowns alphabetically" is a real rule Claude can follow
+- Add rules when Claude does something you don't like. Over time your file gets better
+- Keep it under 200 lines. Claude reads this every session and long files dilute the important stuff
+
+---
+
+## Step 7: Add your team's context (optional)
+
+If your team wants to share notes, conventions, or project background with other teams using this repo, there's a `teams/` folder for that.
+
+1. Copy the `teams/_template/` folder
+2. Rename it to your team name (e.g. `teams/wealthai/`)
+3. Fill in the README and template inside
+
+**Important: do not put sensitive information here.** This repo is public. Anything confidential (financials, investor names, deal details) should go in your private project repo, not here.
+
+---
+
+## Quick reference
+
+Once you're set up, here are useful things to know:
+
+| What you want to do | What to type |
+|---------------------|-------------|
+| Start Claude | `claude` |
+| Get help | `/help` (inside a Claude session) |
+| See available tools | `/tools` (inside a Claude session) |
+| Check if setup is working | `claude doctor` |
+| Split Ghostty screen | `Cmd + D` |
+| Open Ghostty settings | `Cmd + ,` |
+
+---
+
+## Troubleshooting
+
+**"command not found: claude"**
+Close Ghostty and reopen it. If that doesn't work, run the install command from Step 2 again.
+
+**Browser didn't open when I typed `claude`**
+Try running `claude` again. If it still doesn't open, copy the URL that appears in the terminal and paste it into your browser manually.
+
+**"Permission denied" errors**
+Run the permissions command from Step 3 again. Make sure you paste the whole block, not just part of it.
+
+**Something else not working?**
+Run `claude doctor` in Ghostty. It checks your setup and tells you what's wrong.
