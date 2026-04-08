@@ -107,7 +107,7 @@ A browser window will open asking you to log in. Sign in with your Claude accoun
 
 ## Step 4: Configure permissions
 
-Claude needs permission to run tools on your machine (editing files, searching the web, running commands). We'll set it up so it doesn't ask you for permission every single time.
+Claude needs permission to run tools on your machine (editing files, searching the web, running commands). We'll set it up so it can work freely, but only inside your Claude folder. It won't be able to read or change files anywhere else on your machine.
 
 Paste this entire block into Ghostty and press Enter:
 
@@ -116,13 +116,26 @@ mkdir -p ~/.claude && cat > ~/.claude/settings.json << 'EOF'
 {
   "skipDangerousModePermissionPrompt": true,
   "permissions": {
-    "defaultMode": "bypassPermissions"
+    "defaultMode": "bypassPermissions",
+    "allow": [
+      "Read(~/Documents/Claude/**)",
+      "Edit(~/Documents/Claude/**)",
+      "Write(~/Documents/Claude/**)",
+      "Bash(*)"
+    ],
+    "deny": [
+      "Read(~/**)",
+      "Edit(~/**)",
+      "Write(~/**)"
+    ]
   }
 }
 EOF
 ```
 
 That's it. No output means it worked.
+
+**What this does:** Claude can read, edit, and create files inside `~/Documents/Claude/` (your project folder from Step 6). It cannot access files anywhere else on your machine. Your personal documents, photos, emails, and everything else stays private.
 
 > **Troubleshooting Step 4:**
 >
@@ -137,9 +150,11 @@ That's it. No output means it worked.
 > ```
 > cat ~/.claude/settings.json
 > ```
-> You should see the text that starts with `{` and contains `"bypassPermissions"`. If you do, it worked.
+> You should see text that includes `"Documents/Claude"` and `"bypassPermissions"`. If you do, it worked.
 >
 > **I only pasted part of it.** You need to paste the entire block from `mkdir` down to and including `EOF`. If you missed some, just paste the whole thing again. It will overwrite the previous attempt.
+>
+> **Claude says it can't read or edit a file.** Make sure the file is inside your `~/Documents/Claude/` folder. If it's somewhere else on your machine, move it there first.
 
 ---
 
