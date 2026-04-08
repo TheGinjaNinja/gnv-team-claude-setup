@@ -140,17 +140,78 @@ Close and reopen Ghostty to see the changes.
 
 ---
 
-## Step 5: Start using Claude
+## Step 5: Set up your Claude folder
 
-Open Ghostty, navigate to your project folder, and type `claude` to start a session.
+All your work with Claude should live in one place: a folder called **Claude** inside your Documents folder. Every project gets its own subfolder inside it.
 
-If you're not sure how to navigate to your project folder, paste this (replacing the path with your actual folder):
+**First, create the Claude folder.** Paste this into Ghostty and press Enter:
 
 ```
-cd ~/Documents/my-project
+mkdir -p ~/Documents/Claude
 ```
 
-Then type `claude` and press Enter.
+**Then, set up your project inside it.** Your team lead will tell you which applies:
+
+### If you're joining an existing project
+
+Your team lead will give you a GitHub link (looks like `https://github.com/something/something`). Paste this into Ghostty, replacing the URL with your actual link:
+
+```
+cd ~/Documents/Claude && git clone https://github.com/your-org/your-project.git
+```
+
+### If you're starting a brand new project
+
+```
+cd ~/Documents/Claude && mkdir my-project && cd my-project && git init
+```
+
+Replace "my-project" with whatever you want to call it. Use hyphens instead of spaces (e.g. `sales-dashboard`, not `sales dashboard`).
+
+### Your folder structure
+
+This is what your Claude folder should look like over time:
+
+```
+~/Documents/Claude/
+  project-one/                 <- each project gets its own folder
+    CLAUDE.md                  <- rules for Claude (you'll set this up in Step 7)
+    .env                       <- secrets and keys (NEVER share or commit this)
+    .gitignore                 <- tells git which files to ignore
+    src/                       <- your source code
+    docs/                      <- documentation, notes, specs
+    ...
+  project-two/
+    ...
+```
+
+**Important rules:**
+- Always open Ghostty and go to your project folder inside `~/Documents/Claude/` before starting Claude
+- Never run Claude from your home folder or desktop. Always be inside a project folder
+- The `.env` file holds secrets (API keys, passwords). Never share it, never commit it to git
+
+> **Troubleshooting Step 5:**
+>
+> **"command not found: git"** You need to install git. Paste this into Ghostty: `xcode-select --install` and follow the prompts. It takes a few minutes. Then try again.
+>
+> **"I don't have a GitHub link."** Ask your team lead. They'll either give you a link to clone, or tell you to start a new project.
+>
+> **"Permission denied" or "Repository not found" when cloning.** You probably don't have access to the repo. Ask your team lead to add you as a collaborator on GitHub. You'll also need to be logged into GitHub from the terminal. Paste this: `gh auth login` and follow the prompts. If that says "command not found: gh", install it first: `brew install gh`.
+>
+> **"What does `cd` mean?"** It stands for "change directory". It's how you move between folders in the terminal. Think of it like double-clicking a folder on your desktop, but in text form.
+>
+> **"I already have the project somewhere else on my machine."** Move it into your Claude folder. In Ghostty, paste: `mv ~/Desktop/project-name ~/Documents/Claude/` (adjust the path if it's somewhere other than your Desktop).
+
+---
+
+## Step 6: Start using Claude
+
+Go to your project folder and start Claude:
+
+```
+cd ~/Documents/Claude/your-project
+claude
+```
 
 **But before you ask Claude to build anything, read this section. It will save you a lot of time.**
 
