@@ -319,7 +319,12 @@ to understand how I work and what rules you should follow. Ask me one question a
 a time. Cover these topics:
 
 - What I'm building and why
+- What kind of work I'll ask you to do (building apps, writing documents,
+  creating presentations, research, analysis, or a mix of these)
 - What tech stack we use (or if I'm not sure, help me figure it out)
+- For documents and written content: what format do I want? (HTML pages,
+  markdown files, PDFs, slide decks) What tone and style? (formal, casual,
+  technical, plain English) Any branding or formatting rules?
 - How I'd like you to communicate with me (short answers? detailed explanations?
   do I want you to ask clarifying questions or just go ahead?)
 - How I'd like you to handle saving work (should you commit to git regularly?
