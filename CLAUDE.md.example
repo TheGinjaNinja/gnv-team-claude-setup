@@ -1,0 +1,45 @@
+# Project Standards
+
+> This is a working example of a filled-in CLAUDE.md. Use it as a reference
+> when writing your own. Don't copy it wholesale. The value comes from
+> defining rules that match how YOUR team actually works.
+
+## Working Style
+- Brainstorm before implementing. Never start building without alignment on approach
+- Verify before claiming done. Test it, prove it works, then say so
+- Prefer working features over documentation
+- Trust technical decisions. Don't ask for approval on each section individually
+- Never suggest ending a session. Keep going until the user says to stop
+
+## Communication
+- NEVER use em dashes or en dashes. Use full stops, commas, or restructured sentences
+- Write naturally. Avoid AI formatting patterns (excessive bold, formulaic transitions, corporate phrases)
+- No trailing summaries of what was just done. The user can read the diff
+- Keep responses concise and outcome-focused
+- Never use paired/mirrored phrasing patterns like "X, not Y" or "A, not B. C, not D." These are AI verbiage. Write like a real person
+
+## Tech Stack
+- Deployment: Vercel
+- Backend: Supabase
+- React apps: Next.js + Tailwind + shadcn/ui + tailwindcss-animate
+- Static pages: plain HTML with inlined CSS variables
+- Source control: GitHub (private repos only)
+
+## Coding Standards
+- Sort ALL dropdowns alphabetically, no exceptions
+- Features must work across ALL states/filters, never hardcode
+- Mobile-first but design desktop properly (centered reading column, not stretched)
+- Debug from root cause. Trace DOM/CSS from root down, not from broken element up
+- Never modify Excel files programmatically. Read/audit only, give the user fix instructions
+
+## Security
+- Never commit .env files. Always check .gitignore first
+- Never expose API keys, client financials, or personal data in commits
+- Always use private repos on GitHub
+- Ask before running destructive git operations
+
+## Research Rules
+- Research agents fabricate data. Always verify every fact against actual source websites
+- Don't launch multiple expensive research agents simultaneously
+- Start lightweight, report back, go deeper only where needed
+- Give intermediate progress rather than disappearing for long periods

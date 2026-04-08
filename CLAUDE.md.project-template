@@ -1,0 +1,51 @@
+# Project Standards
+
+> Drop this file as `CLAUDE.md` in the root of your project repo.
+> Claude Code automatically reads it when you open a session in that directory.
+> Fill in each section to match how your team actually works.
+
+## Working Style
+<!-- How should Claude approach tasks? Examples: -->
+<!-- - Brainstorm before implementing. Never start building without alignment -->
+<!-- - Verify before claiming done. Test it, prove it works, then say so -->
+<!-- - Prefer working features over documentation -->
+
+
+## Communication
+<!-- How should Claude talk to you? Examples: -->
+<!-- - Keep responses concise and outcome-focused -->
+<!-- - No trailing summaries of what was just done -->
+<!-- - Write naturally, avoid AI formatting patterns -->
+
+
+## Tech Stack
+<!-- What does this project use? Examples: -->
+<!-- - Deployment: Vercel -->
+<!-- - Backend: Supabase -->
+<!-- - Frontend: Next.js + Tailwind + shadcn/ui -->
+
+
+## Coding Standards
+<!-- What rules should Claude follow when writing code? Examples: -->
+<!-- - Sort all dropdowns alphabetically -->
+<!-- - Mobile-first but design desktop properly -->
+<!-- - Debug from root cause, not from the broken element up -->
+
+
+## Design System
+<!-- If your project has a design system, put colours, typography, spacing, and component patterns here -->
+<!-- This is the most project-specific section. Be as detailed as you need -->
+
+
+## Security
+<!-- What should Claude never do? Examples: -->
+<!-- - Never commit .env files -->
+<!-- - Never expose API keys or personal data in commits -->
+<!-- - Ask before running destructive git operations -->
+
+
+## Research Rules
+<!-- If Claude does research for you, how should it behave? Examples: -->
+<!-- - Always verify facts against actual source websites -->
+<!-- - Start lightweight, go deeper only where needed -->
+<!-- - Give intermediate progress rather than disappearing for long periods -->
