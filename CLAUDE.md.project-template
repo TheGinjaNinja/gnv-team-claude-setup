@@ -10,6 +10,14 @@
 <!-- - Verify before claiming done. Test it, prove it works, then say so -->
 <!-- - Prefer working features over documentation -->
 
+<!-- DEFAULT WORKFLOW: brainstorm -> plan -> build -->
+<!-- We recommend keeping this unless your team has a good reason to skip steps -->
+- Follow the brainstorm, plan, build workflow. Don't jump straight to code
+- Brainstorm: explore the problem, discuss approaches, align on direction
+- Plan: write a step-by-step implementation outline before touching code
+- Build: execute the plan, go back to brainstorming if the approach changes
+- For small bug fixes or trivial changes, it's fine to skip straight to building
+
 
 ## Communication
 <!-- How should Claude talk to you? Examples: -->

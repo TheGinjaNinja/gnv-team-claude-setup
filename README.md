@@ -62,7 +62,27 @@ Create or edit `~/.claude/settings.json`:
 
 This lets Claude run all tools (bash, file edits, git, web search) without prompting for each one. Only use this on machines where you're comfortable with that level of access.
 
-## 4. Set up your project CLAUDE.md
+## 4. How to work with Claude: brainstorm, plan, build
+
+Claude Code works best when you follow a deliberate workflow. Don't just jump straight to "build me X". The quality of what you get out depends on how you work with it.
+
+**The three modes:**
+
+1. **Brainstorm** - Explore the problem space. Tell Claude what you're trying to achieve and why. Discuss options, trade-offs, and approaches. Don't write any code yet. This is where you align on what to build.
+
+2. **Plan** - Once you've agreed on an approach, ask Claude to write a plan. This is a step-by-step implementation outline. Review it, poke holes in it, refine it. The plan becomes your shared roadmap.
+
+3. **Build** - Now execute the plan. Claude writes the code, you review. If something comes up that changes the approach, go back to brainstorming or update the plan. Don't just push through a plan that no longer fits.
+
+**In practice:**
+- Start a new feature with "Let's brainstorm how to approach X"
+- When aligned, say "Write a plan for this"
+- When the plan looks good, say "Let's build it" or "Execute step 1"
+- If something unexpected comes up, say "Let's step back and rethink this part"
+
+**This is the default.** We recommend everyone starts this way. As you get more comfortable with Claude, you'll develop your own rhythm. Some people skip brainstorming for small tasks. Some go straight to building for bug fixes. That's fine. But start with the full workflow and adjust from experience, not assumption.
+
+## 5. Set up your project CLAUDE.md
 
 This is the important bit. A `CLAUDE.md` file in your project root tells Claude how to work with you. It covers your tech stack, coding standards, communication style, security rules, and anything else that matters to your team.
 
@@ -79,11 +99,28 @@ This is the important bit. A `CLAUDE.md` file in your project root tells Claude 
 - Update it as you go. Your first version won't be perfect. Refine it over weeks as you learn what works
 - Keep it under 200 lines. Claude reads this every session. Long files dilute the important stuff
 
-## 5. Optional: personal global config
+## 6. Adding project context for your team
+
+If your team needs shared context that Claude should know about (product background, key decisions, domain terminology), put it in your project's `CLAUDE.md` or in a `docs/` folder that Claude can read.
+
+**Do not put sensitive information in this setup repo.** Investor names, financial figures, deal status, and similar details belong in the project repo itself (private), not here. This repo is for setup guidance and templates.
+
+Each team should own their own project context. The `teams/` folder in this repo has a template for adding team-specific notes that aren't sensitive:
+
+```
+teams/
+  your-team-name/
+    README.md                  <- team-specific setup notes, tools, conventions
+    CLAUDE.md.template         <- customised CLAUDE.md template for your projects
+```
+
+To add your team: copy `teams/_template/` to `teams/your-team-name/` and fill it in.
+
+## 7. Optional: personal global config
 
 You can also create `~/.claude/CLAUDE.md` for preferences that apply across all your projects (not just ones with a project-level file). Good candidates: communication style, general coding habits, tools you always use.
 
-## 6. Useful commands inside Claude Code
+## 8. Useful commands inside Claude Code
 
 | Command | What it does |
 |---------|-------------|

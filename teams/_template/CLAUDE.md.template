@@ -1,0 +1,33 @@
+# [Your Team Name] Project Standards
+
+> Copy this into your project repo as `CLAUDE.md` and fill it in.
+> This is a starting point customised for your team. Adjust as needed.
+
+## Working Style
+<!-- How should Claude approach tasks with your team? -->
+
+
+## Communication
+<!-- How should Claude talk to your team? -->
+
+
+## Tech Stack
+<!-- What does your project use? -->
+
+
+## Coding Standards
+<!-- What rules should Claude follow when writing code? -->
+
+
+## Design System
+<!-- If your project has a design system, detail it here -->
+
+
+## Security
+<!-- What should Claude never do? -->
+
+
+## Project Context
+<!-- Key background that helps Claude understand your product -->
+<!-- Keep this to non-sensitive information only -->
+<!-- For sensitive context (financials, investor details), use your private project repo -->
