@@ -370,7 +370,102 @@ Start with the first question.
 
 ---
 
-## Step 9: Add your team's context (optional)
+## Step 9: Set up developer tools (if building apps or publishing)
+
+If you're building apps, websites, or anything that needs to go live, you'll need accounts on a few services. If you're only writing documents or doing research, you can skip this step.
+
+### GitHub (code storage and collaboration) - FREE
+
+GitHub is where your code lives online. It's like a backup that also lets your team collaborate.
+
+**Cost:** Free for everything you need. Private repos, unlimited collaborators.
+
+**Setup:**
+1. Go to https://github.com and create an account (use your work email)
+2. In Ghostty, install the GitHub command line tool:
+   ```
+   brew install gh
+   ```
+3. Log in from the terminal:
+   ```
+   gh auth login
+   ```
+4. Follow the prompts. Choose "GitHub.com", "HTTPS", and "Login with a web browser"
+
+> **Troubleshooting:**
+>
+> **"command not found: brew"** You need Homebrew first. Paste this into Ghostty: `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"` and follow the prompts. Then try again.
+>
+> **"I already have a GitHub account."** Just run `gh auth login` to connect it to your terminal.
+
+---
+
+### Vercel (publishing websites and apps) - FREE to start
+
+Vercel takes your code and puts it on the internet. When you push code to GitHub, Vercel automatically updates your live site.
+
+**Cost:**
+| Plan | Cost | What you get |
+|------|------|-------------|
+| Hobby (free) | $0/month | Personal, non-commercial projects. 100 GB bandwidth |
+| Pro | $20/month | Commercial use. 1 TB bandwidth. Custom domains |
+
+Start on the free Hobby plan. Upgrade to Pro when you're ready to go live with something commercial.
+
+**Setup:**
+1. Go to https://vercel.com and sign up (use "Continue with GitHub" so they're linked)
+2. That's it for now. When you're ready to deploy something, Claude will walk you through connecting your project
+
+> **Troubleshooting:**
+>
+> **"Should I sign up with GitHub or email?"** Use "Continue with GitHub". It connects the two accounts automatically, which makes deploying much easier.
+>
+> **"Do I need the Pro plan?"** Not yet. The free plan is fine for building and testing. You only need Pro when you want to use a custom domain or go commercial.
+
+---
+
+### Supabase (database and backend) - FREE to start
+
+Supabase is where your app stores data. User accounts, content, files. Think of it as the backend that powers your app.
+
+**Cost:**
+| Plan | Cost | What you get |
+|------|------|-------------|
+| Free | $0/month | 500 MB database, 1 GB file storage. Pauses after 7 days of inactivity |
+| Pro | $25/month | 8 GB database, 250 GB file storage. Never pauses. Daily backups |
+
+Start on the free plan. It's enough for building and testing. Upgrade to Pro when your app has real users or you need it to stay online permanently.
+
+**Setup:**
+1. Go to https://supabase.com and sign up (use "Continue with GitHub" so they're linked)
+2. Create a new project. Pick a name and set a database password (save this somewhere safe)
+3. Choose the region closest to your users (London for UK)
+4. That's it for now. Claude will help you connect your app to Supabase when the time comes
+
+> **Troubleshooting:**
+>
+> **"My Supabase project paused itself."** On the free plan, projects pause after 7 days with no activity. Go to your Supabase dashboard and click "Restore project". To avoid this, upgrade to Pro ($25/month).
+>
+> **"I forgot my database password."** You can reset it in the Supabase dashboard under Settings, then Database.
+>
+> **"Do I need all three services?"** Not necessarily. GitHub is useful for everyone (it backs up your code). Vercel and Supabase are only needed if you're building apps or websites. Ask your team lead if you're not sure.
+
+---
+
+### Cost summary
+
+| Service | Free tier | Paid tier | When to upgrade |
+|---------|-----------|-----------|-----------------|
+| Claude | - | $20-200/month | You need this from day one |
+| GitHub | Unlimited | $4/month (rarely needed) | Only if you need advanced branch protection |
+| Vercel | Personal projects | $20/month | When going commercial or using custom domains |
+| Supabase | 500 MB, auto-pauses | $25/month | When you have real users or need always-on |
+
+**Minimum cost to get started: $20/month** (just Claude Pro). Everything else has a free tier that's fine for building and testing.
+
+---
+
+## Step 10: Add your team's context (optional)
 
 If your team wants to share notes, conventions, or project background with other teams using this repo, there's a `teams/` folder for that.
 
@@ -380,7 +475,7 @@ If your team wants to share notes, conventions, or project background with other
 
 **Important: do not put sensitive information here.** This repo is public. Anything confidential (financials, investor names, deal details) should go in your private project repo, not here.
 
-> **Troubleshooting Step 9:**
+> **Troubleshooting Step 10:**
 >
 > **"I don't know how to copy a folder in GitHub."** You can do it from the terminal. Navigate to this repo's folder and type: `cp -r teams/_template teams/your-team-name` (replace "your-team-name" with your actual team name, no spaces).
 >
