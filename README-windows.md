@@ -383,3 +383,141 @@ Start with the first question.
 > **Claude asked a question I don't understand.** Just say "I'm not sure what you mean" or "skip this one". Claude will either rephrase or move on.
 >
 > **I'm not technical and don't know what tech stack means.** That's fine. When Claude asks, just describe what you're building in plain English. "A website", "a dashboard", "a mobile app". Claude will figure out the technical details or ask follow-up questions.
+
+---
+
+## Step 9: Set up developer tools (if building apps or publishing)
+
+If you're building apps, websites, or anything that needs to go live, you'll need accounts on a few services. If you're only writing documents or doing research, you can skip this step.
+
+### GitHub (code storage and collaboration) - FREE
+
+GitHub is where your code lives online. It's like a backup that also lets your team collaborate.
+
+**Cost:** Free for everything you need. Private repos, unlimited collaborators.
+
+**Setup:**
+1. Go to https://github.com and create an account (use your work email)
+2. In Windows Terminal, install the GitHub command line tool:
+   ```
+   winget install GitHub.cli
+   ```
+3. Log in from the terminal:
+   ```
+   gh auth login
+   ```
+4. Follow the prompts. Choose "GitHub.com", "HTTPS", and "Login with a web browser"
+
+> **Troubleshooting:**
+>
+> **"winget is not recognized"** Your Windows doesn't have winget. Download the GitHub CLI directly from https://cli.github.com instead. Run the installer.
+>
+> **"I already have a GitHub account."** Just run `gh auth login` to connect it to your terminal.
+
+---
+
+### Vercel (publishing websites and apps) - FREE to start
+
+Vercel takes your code and puts it on the internet. When you push code to GitHub, Vercel automatically updates your live site.
+
+**Cost:**
+| Plan | Cost | What you get |
+|------|------|-------------|
+| Hobby (free) | $0/month | Personal, non-commercial projects. 100 GB bandwidth |
+| Pro | $20/month | Commercial use. 1 TB bandwidth. Custom domains |
+
+Start on the free Hobby plan. Upgrade to Pro when you're ready to go live with something commercial.
+
+**Setup:**
+1. Go to https://vercel.com and sign up (use "Continue with GitHub" so they're linked)
+2. That's it for now. When you're ready to deploy something, Claude will walk you through connecting your project
+
+> **Troubleshooting:**
+>
+> **"Should I sign up with GitHub or email?"** Use "Continue with GitHub". It connects the two accounts automatically, which makes deploying much easier.
+>
+> **"Do I need the Pro plan?"** Not yet. The free plan is fine for building and testing. You only need Pro when you want to use a custom domain or go commercial.
+
+---
+
+### Supabase (database and backend) - FREE to start
+
+Supabase is where your app stores data. User accounts, content, files. Think of it as the backend that powers your app.
+
+**Cost:**
+| Plan | Cost | What you get |
+|------|------|-------------|
+| Free | $0/month | 500 MB database, 1 GB file storage. Pauses after 7 days of inactivity |
+| Pro | $25/month | 8 GB database, 250 GB file storage. Never pauses. Daily backups |
+
+Start on the free plan. It's enough for building and testing. Upgrade to Pro when your app has real users or you need it to stay online permanently.
+
+**Setup:**
+1. Go to https://supabase.com and sign up (use "Continue with GitHub" so they're linked)
+2. Create a new project. Pick a name and set a database password (save this somewhere safe)
+3. Choose the region closest to your users (London for UK)
+4. That's it for now. Claude will help you connect your app to Supabase when the time comes
+
+> **Troubleshooting:**
+>
+> **"My Supabase project paused itself."** On the free plan, projects pause after 7 days with no activity. Go to your Supabase dashboard and click "Restore project". To avoid this, upgrade to Pro ($25/month).
+>
+> **"I forgot my database password."** You can reset it in the Supabase dashboard under Settings, then Database.
+>
+> **"Do I need all three services?"** Not necessarily. GitHub is useful for everyone (it backs up your code). Vercel and Supabase are only needed if you're building apps or websites. Ask your team lead if you're not sure.
+
+---
+
+### Cost summary
+
+| Service | Free tier | Paid tier | When to upgrade |
+|---------|-----------|-----------|-----------------|
+| Claude | - | $20-200/month | You need this from day one |
+| GitHub | Unlimited | $4/month (rarely needed) | Only if you need advanced branch protection |
+| Vercel | Personal projects | $20/month | When going commercial or using custom domains |
+| Supabase | 500 MB, auto-pauses | $25/month | When you have real users or need always-on |
+
+**Minimum cost to get started: $20/month** (just Claude Pro). Everything else has a free tier that's fine for building and testing.
+
+---
+
+## Step 10: Add your team's context (optional)
+
+If your team wants to share notes, conventions, or project background with other teams using this repo, there's a `teams/` folder for that.
+
+1. Copy the `teams/_template/` folder
+2. Rename it to your team name (e.g. `teams/wealthai/`)
+3. Fill in the README and template inside
+
+**From the terminal:**
+
+```
+Copy-Item -Recurse teams\_template teams\your-team-name
+```
+
+Replace "your-team-name" with your actual team name, no spaces.
+
+**Important: do not put sensitive information here.** This repo is public. Anything confidential (financials, investor names, deal details) should go in your private project repo, not here.
+
+> **Troubleshooting Step 10:**
+>
+> **"I don't use GitHub."** That's OK. You can skip this step entirely. The important file is the CLAUDE.md in your own project folder (Step 8). This step is just for sharing context across teams.
+
+---
+
+## Quick reference
+
+Once you're set up, here are useful things to know:
+
+| What you want to do | What to type |
+|---------------------|-------------|
+| Start Claude | `claude` |
+| Get help | `/help` (inside a Claude session) |
+| See available tools | `/tools` (inside a Claude session) |
+| Check if setup is working | `claude doctor` |
+| Split terminal pane | `Alt + Shift + D` |
+| Move between panes | `Alt + Arrow keys` |
+| Open terminal settings | `Ctrl + ,` |
+| Stop Claude mid-task | `Ctrl + C` |
+| Exit a Claude session | `Ctrl + D` or type `/exit` |
+| Exit the terminal | Type `exit` and press Enter |
