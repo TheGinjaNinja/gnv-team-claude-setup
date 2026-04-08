@@ -26,6 +26,16 @@ Once installed, open Ghostty. It looks like a terminal with a black background. 
 
 **You need macOS 13 or newer.** To check: click the Apple menu at the top left of your screen, then "About This Mac". If your version number starts with 13 or higher, you're fine.
 
+> **Troubleshooting Step 1:**
+>
+> **"How do I open Spotlight?"** Press `Cmd + Space` on your keyboard. A search bar appears. Type "Terminal" and press Enter.
+>
+> **"I don't know if I have Homebrew."** You probably don't, and that's fine. Use Option B and download from the website.
+>
+> **Ghostty won't open.** Right-click the app and choose "Open" instead of double-clicking. macOS sometimes blocks apps downloaded from the internet the first time. You may see a warning. Click "Open" to confirm.
+>
+> **"Your macOS is too old."** You need to update your Mac. Go to System Settings, then General, then Software Update.
+
 ---
 
 ## Step 2: Install Claude Code
@@ -45,6 +55,18 @@ claude
 ```
 
 A browser window will open asking you to log in. Sign in with your Claude account. Once you see a confirmation message, go back to Ghostty. You're connected.
+
+> **Troubleshooting Step 2:**
+>
+> **"command not found: curl"** This is very rare on Mac. Try updating your macOS (System Settings, General, Software Update) and try again.
+>
+> **"command not found: claude"** You need to close Ghostty completely and reopen it after installing. If that doesn't help, paste the install command again and watch for any error messages.
+>
+> **The browser didn't open.** Try typing `claude` again. If it still doesn't open, look in the terminal for a URL (it will start with https://). Copy that URL and paste it into your browser manually.
+>
+> **"I don't have a Claude account."** You'll need one. Ask your team lead for an invite, or sign up at https://claude.ai.
+>
+> **It says I'm already logged in but something seems wrong.** Type `claude /logout` and press Enter, then type `claude` again to log in fresh.
 
 ---
 
@@ -66,6 +88,23 @@ EOF
 ```
 
 That's it. No output means it worked.
+
+> **Troubleshooting Step 3:**
+>
+> **Nothing happened.** That's correct. This command doesn't show any output when it works. You're good.
+>
+> **"Permission denied"** Try pasting this first, then run the command above again:
+> ```
+> mkdir -p ~/.claude
+> ```
+>
+> **I'm not sure it worked.** You can check by pasting this command:
+> ```
+> cat ~/.claude/settings.json
+> ```
+> You should see the text that starts with `{` and contains `"bypassPermissions"`. If you do, it worked.
+>
+> **I only pasted part of it.** You need to paste the entire block from `mkdir` down to and including `EOF`. If you missed some, just paste the whole thing again. It will overwrite the previous attempt.
 
 ---
 
@@ -91,11 +130,27 @@ Close and reopen Ghostty to see the changes.
 - Lets you press `Cmd + D` to split the screen (useful for having Claude in one side and something else in the other)
 - Enables notifications so you know when Claude has finished a task
 
+> **Troubleshooting Step 4:**
+>
+> **The font looks the same after reopening.** Make sure you fully closed Ghostty (Cmd + Q), not just closed the window. Then reopen it.
+>
+> **The font looks weird or broken.** JetBrains Mono is built into Ghostty, so this shouldn't happen. If it does, open the config file by pressing `Cmd + ,` in Ghostty and change the font-family line to `font-family = "monospace"`.
+>
+> **I don't want to do this step.** That's fine. Skip it. Ghostty works without any config. You can always come back and do this later.
+
 ---
 
 ## Step 5: Start using Claude
 
 Open Ghostty, navigate to your project folder, and type `claude` to start a session.
+
+If you're not sure how to navigate to your project folder, paste this (replacing the path with your actual folder):
+
+```
+cd ~/Documents/my-project
+```
+
+Then type `claude` and press Enter.
 
 **But before you ask Claude to build anything, read this section. It will save you a lot of time.**
 
@@ -125,6 +180,16 @@ Example: *"The plan looks good. Let's build it, starting with step 1."*
 
 **Start with all three steps.** As you get more comfortable, you'll find your own rhythm. Small fixes might not need brainstorming. That's fine. But learn the full workflow first, then adjust.
 
+> **Troubleshooting Step 5:**
+>
+> **"I don't know what my project folder is."** Ask your team lead. If you're starting a new project from scratch, create a folder first: `mkdir ~/Documents/my-project` then `cd ~/Documents/my-project`.
+>
+> **Claude seems confused or isn't doing what I want.** Be more specific. Instead of "make it better", say exactly what you want changed and why. The more context you give, the better the result.
+>
+> **Claude is doing something wrong and won't stop.** Press `Ctrl + C` to interrupt it. Then explain what went wrong and what you'd like instead.
+>
+> **I accidentally closed Ghostty mid-session.** Just reopen Ghostty, navigate to your project folder, and type `claude` again. Your files are safe. The conversation history is lost, but that's fine. Just tell Claude what you're working on.
+
 ---
 
 ## Step 6: Teach Claude how your team works (CLAUDE.md)
@@ -146,6 +211,14 @@ The comments inside the file explain what to put in each section. Delete the com
 - Add rules when Claude does something you don't like. Over time your file gets better
 - Keep it under 200 lines. Claude reads this every session and long files dilute the important stuff
 
+> **Troubleshooting Step 6:**
+>
+> **"I don't know what to put in the CLAUDE.md."** Start with just one or two rules. You don't need to fill in every section on day one. Add more rules as you learn what works and what doesn't.
+>
+> **"I'm not sure Claude is reading my CLAUDE.md."** Make sure the file is named exactly `CLAUDE.md` (capital letters matter) and is in the root of your project folder, not inside a subfolder. When you start a Claude session, it will mention reading the file.
+>
+> **"How do I open a .md file?"** It's just a text file. Right-click it, choose "Open With", and pick any text editor (TextEdit, VS Code, or even Notes). Or ask Claude to help you edit it inside a session.
+
 ---
 
 ## Step 7: Add your team's context (optional)
@@ -157,6 +230,12 @@ If your team wants to share notes, conventions, or project background with other
 3. Fill in the README and template inside
 
 **Important: do not put sensitive information here.** This repo is public. Anything confidential (financials, investor names, deal details) should go in your private project repo, not here.
+
+> **Troubleshooting Step 7:**
+>
+> **"I don't know how to copy a folder in GitHub."** You can do it from the terminal. Navigate to this repo's folder and type: `cp -r teams/_template teams/your-team-name` (replace "your-team-name" with your actual team name, no spaces).
+>
+> **"I don't use GitHub."** That's OK. You can skip this step entirely. The important file is the CLAUDE.md in your own project folder (Step 6). This step is just for sharing context across teams.
 
 ---
 
@@ -172,19 +251,6 @@ Once you're set up, here are useful things to know:
 | Check if setup is working | `claude doctor` |
 | Split Ghostty screen | `Cmd + D` |
 | Open Ghostty settings | `Cmd + ,` |
-
----
-
-## Troubleshooting
-
-**"command not found: claude"**
-Close Ghostty and reopen it. If that doesn't work, run the install command from Step 2 again.
-
-**Browser didn't open when I typed `claude`**
-Try running `claude` again. If it still doesn't open, copy the URL that appears in the terminal and paste it into your browser manually.
-
-**"Permission denied" errors**
-Run the permissions command from Step 3 again. Make sure you paste the whole block, not just part of it.
-
-**Something else not working?**
-Run `claude doctor` in Ghostty. It checks your setup and tells you what's wrong.
+| Stop Claude mid-task | `Ctrl + C` |
+| Exit a Claude session | `Ctrl + D` or type `/exit` |
+| Exit the terminal | Type `exit` and press Enter |
