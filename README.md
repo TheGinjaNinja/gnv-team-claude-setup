@@ -320,16 +320,25 @@ a time. Cover these topics:
 
 - What I'm building and why
 - What tech stack we use (or if I'm not sure, help me figure it out)
-- How I'd like you to communicate with me (short answers? detailed explanations?)
+- How I'd like you to communicate with me (short answers? detailed explanations?
+  do I want you to ask clarifying questions or just go ahead?)
+- How I'd like you to handle saving work (should you commit to git regularly?
+  ask before committing? save progress at the end of each session?)
 - What coding standards matter to me (even if I'm not technical, things like
   "make it look clean" or "keep it simple" count)
 - Any design preferences (colours, fonts, layout)
 - Security rules (what should you never do?)
 - Anything that's gone wrong before that you should avoid
+- How I'd like to update these rules over time (should you suggest new rules
+  when you notice patterns? should you ask me before changing anything?)
 
 When you've asked enough questions, create a CLAUDE.md file in this project folder
 with everything we discussed. Keep it under 200 lines. Use clear, specific rules
 rather than vague guidelines.
+
+Also include a section at the end of the CLAUDE.md called "How to update this file"
+that reminds me I can say things like "add a rule to CLAUDE.md that says..." or
+"update the CLAUDE.md to change..." at any time during a session.
 
 Start with the first question.
 ```
